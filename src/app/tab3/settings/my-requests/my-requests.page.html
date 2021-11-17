@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings" mode="ios" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Requast History</ion-title>
+    <ion-searchbar #searchInput (ionInput)="inputChange(searchInput)" placeholder="Search" class="mb-0"></ion-searchbar>
+    <ion-text *ngIf="mesaage" class="ion-text-center block">{{mesaage}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+    <ion-list  translucent="true" class="ion-no-padding">
+        <ion-item-sliding *ngFor="let globalSearch of globalSearches" >
+            <ion-item lines="none" class="ion-no-padding profile-ad">
+              <app-ad [globalSearch] = "globalSearch" [from]="'fromMyRequest'">
+              </app-ad>
+            </ion-item>
+              <ion-item-options  side="end">
+                <ion-item-option (click)="delete($event, globalSearch)" expandable>
+                  <ion-icon  name="close-outline"></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+
+        </ion-item-sliding>
+    </ion-list>
+
+
+
+
+  <ion-infinite-scroll  #infiniteScroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="circles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>
+
+<!-- <ion-list  translucent="true" class="ion-no-padding">
+    <ion-item-sliding *ngFor="let globalSearch of globalSearches" >
+
+          <app-ad [globalSearch] = "globalSearch" [from]="'fromMyRequest'">
+          </app-ad>
+          <ion-item-options  side="end">
+            <ion-item-option (click)="delete($event, globalSearch)" expandable>
+              <ion-icon  name="close-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+
+    </ion-item-sliding>
+</ion-list> -->
+
+<!-- <ion-item *ngFor="let globalSearch  of globalSearches" lines="none" class="ion-no-padding profile-ad">
+  <app-ad [globalSearch] = "globalSearch" [from]="'fromMyRequest'">
+  </app-ad>
+</ion-item> -->

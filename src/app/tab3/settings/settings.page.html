@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/myProfile" mode="ios" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{texts.editSettings[currentLang]}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item detail routerLink="/settings/edit">
+        <ion-label>{{texts.editProfile[currentLang]}}</ion-label>
+    </ion-item>
+    <ion-item detail routerLink="/settings/change-pass">
+      <ion-label>{{texts.changPass[currentLang]}}</ion-label>
+    </ion-item>
+    <ion-item detail routerLink="/settings/my-requests">
+      <ion-label>{{texts.myRequest[currentLang]}}</ion-label>
+    </ion-item>
+    <ion-item detail routerLink="/settings/blocked-users">
+      <ion-label>{{texts.BlockUser[currentLang]}}</ion-label>
+    </ion-item>
+    <ion-item detail routerLink="/settings/my-contacts">
+      <ion-label>{{texts.MyContact[currentLang]}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{texts.MyActivity[currentLang]}}</ion-label>
+      <ion-toggle [(ngModel)]="isMyActivityVisible" (ionChange)="onChangeMyActivity()" mode="ios"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{texts.fingerprint[currentLang]}}</ion-label>
+      <ion-toggle [(ngModel)]="isFingerprintUnloc" (ionChange)="onChangeFingerprintUnloc()" mode="ios"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{texts.phoneVis[currentLang]}}</ion-label>
+      <ion-toggle  [(ngModel)]="isPhoneVisible" (ionChange)="onChangePhoneVisibility()" mode="ios"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{texts.emailVis[currentLang]}}</ion-label>
+      <ion-toggle [(ngModel)]="isEmailVisible" (ionChange)="onChangeEmailVisibility()"  mode="ios"></ion-toggle>
+    </ion-item>
+    <ion-item detail routerLink="/settings/sign-out">
+      <ion-label>{{texts.signOut[currentLang]}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

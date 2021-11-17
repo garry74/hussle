@@ -1,0 +1,35 @@
+ion-header{
+  ion-title{
+    padding: 0;
+  }
+}
+
+ion-content {
+  ion-list{
+    margin: 0 20px 0 5px;
+
+    ion-item {
+      --background: transparent;
+    }
+  }
+
+  ion-toggle {
+    --background: #3A3A3A;
+    --background-checked: #3A3A3A;
+    --handle-background-checked: #A12AFF;
+    --handle-max-height: 12px;
+    --handle-width: 12px;
+    --handle-spacing: 2px;
+    height: 19px;
+    width: 44px;
+  }
+  ::part(handle){
+    border: 2px solid #9A9A9A;
+  }
+
+  .toggle-checked::part(handle){
+    border: 2px solid #7614C4;
+    --handle-spacing: 6px;
+  }
+
+}

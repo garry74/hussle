@@ -1,0 +1,42 @@
+.personal-data {
+    background: var(--ion-color-darker);
+    padding: 14px 20px;
+    border-radius: 8px;
+    margin: 0 20px;
+    ion-row{
+        margin-bottom: 5px;
+    }
+
+    h2{
+        font-size: 16px;
+        font-weight: bold;
+        font-family: "Acumin Pro";
+        margin: 0;
+    }
+
+    .progress-bar{
+        flex-direction: column;
+        span{
+            display: block;
+            margin-bottom: 6px;
+        }
+    }
+    ion-text,
+    a{
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 400;
+        font-family: "Acumin-Pro";
+        color: var(--ion-color-border);
+        text-decoration: none;
+    }
+    ion-label{
+        font-size: 12px;
+        font-family: "Acumin-Pro";
+        font-weight: 300;
+    }
+    ion-toggle.toggle-checked{
+        --background-checked: #A4C2F7;
+        --handle-background-checked: #E3E7F2;
+    }
+}

@@ -1,0 +1,47 @@
+
+<ion-content class="ion-padding-horizontal bg-content">
+
+  <ion-img class="logo" src="../../assets/icon/logo.png"></ion-img>
+
+  <div class="transparent-bg ion-padding">
+    <ion-text class="ion-text-center">
+      <h1>{{texts.header[currentLang]}}</h1>
+    </ion-text>
+    <p class="ion-text-center text-dark">{{texts.subHeder[currentLang]}}</p>
+    <form [formGroup]="logForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="mb-30">
+        <ion-label>{{texts.EmailAddOrTel[currentLang]}}</ion-label>
+        <ion-input type="email" formControlName="email" class="ion-padding-horizontal"></ion-input>
+        <span class="error ion-padding" *ngIf="errorControl.email.touched && errorControl.email.errors?.required">
+          {{texts.required[currentLang]}}
+        </span>
+      </div>
+
+      <div class="position-relative">
+        <ion-label>{{texts.password[currentLang]}}</ion-label>
+        <ion-input formControlName="password" [type]="!passShow ? 'password' : 'text'" mode="md" class="ion-padding-horizontal"></ion-input>
+        <ion-icon class="eye-off" (click)="passShow = !passShow" [name]="passShow ? 'eye' :  'eye-off'"></ion-icon>
+        <span class="error ion-padding" *ngIf="errorControl.password.touched && errorControl.password.errors?.required">
+          {{texts.required[currentLang]}}
+        </span>
+      </div>
+
+      <ion-grid class="ion-no-padding ion-margin-vertical">
+        <ion-row>
+          <ion-col class="ion-align-self-end ion-text-end">
+            <a routerLink="../forgot-pass" class="text-white no-underline">{{texts.forgotPassword[currentLang]}}</a>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="ion-text-center ion-padding-bottom">
+        <ion-button type="submit" class="gradient-btn ion-margin-vertical"  mode="ios">{{texts.loginButton[currentLang]}}</ion-button>
+      </div>
+    </form>
+  </div>
+
+  <p  class="ion-text-center text-white bottom-text">
+    {{texts.notHaveAccount[currentLang]}}
+    <a routerLink="../register" class="text-lightblue">Register now</a>
+  </p>
+</ion-content>

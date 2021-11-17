@@ -1,0 +1,16 @@
+.chat-content{
+    --padding-top: 15px;
+    ion-list{
+      width: 100%;
+      --background: transparent;
+      background: transparent;
+      ion-item{
+        --background: transparent;
+        background: transparent;
+        width: 100%;
+        app-single-chat{
+          width: 100%;
+        }
+      }
+    }
+}

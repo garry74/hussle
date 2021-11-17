@@ -1,0 +1,13 @@
+.profile-ad{
+    width: calc(100vw - 60px);
+    margin: 10px auto;
+    app-ad{
+      .inbox {
+        width: calc(100vw - 87px);
+      }
+    }
+  }
+  .slider-container{
+    display: flex;
+    justify-content: center;
+  }

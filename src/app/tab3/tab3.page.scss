@@ -1,0 +1,46 @@
+@import "~swiper/scss";
+@import "~swiper/scss/effect-cube";
+
+ion-header {
+  ion-icon {
+    margin: 0 8px;
+  }
+}
+
+.slider{
+  margin: 5px auto 20px;
+}
+.segment-place {
+  margin: 15px 20px 20px;
+  ion-segment-button {
+    --indicator-color: #5887F9;
+    text-transform: capitalize;
+    span {
+      display: block;
+      color: var(--ion-color-border);
+      color: rgba(216, 216, 216, 0.7);
+      font-size: 16px;
+      font-weight: bold;
+      font-family: "Acumin Pro";
+    }
+
+    --color: rgba(216, 216, 216, 0.7);
+    --color-checked: var(--ion-color-border);
+    --color-focused: var(--ion-color-border);
+
+    ion-label,
+    span{
+      color: currentColor;
+    }
+  }
+}
+
+.profile-ad{
+  width: calc(100vw - 60px);
+  margin: 10px auto;
+  app-ad{
+    .inbox {
+      width: calc(100vw - 87px);
+    }
+  }
+}

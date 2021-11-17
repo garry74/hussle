@@ -1,0 +1,39 @@
+<div class="inbox bg-light">
+  <ion-row class="ion-no-padding">
+    <ion-col class="ion-no-padding">
+      <ion-avatar>
+        <img [src]="review.from_user?.image[0] ? review.from_user?.image[0] : 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+      </ion-avatar>
+      <div class="inline-block">
+        <h2>{{review.from_user?.name}}</h2>
+        <div class="progress-bar inline-block">
+
+          <!-- <div *ngIf="globalSearch.user?.rating && ratingCalculator(globalSearch.user.rating) as rating">
+            <span [style.width.%]="rating"></span>
+          </div>
+          <span class="text-agency">{{ ratingCalculator(globalSearch.user.rating) }}%</span> -->
+
+          <div *ngIf="review?.rating && ratingCalculator(review?.rating) as rating">
+            <span [style.width.%]="rating"></span>
+          </div>
+          <span class="text-agency">{{ ratingCalculator(review?.rating) }}%</span>
+        </div>
+      </div>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="text ion-no-padding">
+    <ion-col class="ion-no-padding">
+      <ion-text class="text-agency">
+        {{review?.review}}
+      </ion-text>
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row class="ad-bottom ion-no-padding">
+    <ion-col class="ion-no-padding text-agency"> {{review.created_at | date:'hh:mm dd/MM/yyyy'}}</ion-col>
+  </ion-row>
+</div>

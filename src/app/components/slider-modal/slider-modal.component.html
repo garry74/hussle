@@ -1,0 +1,22 @@
+<ng-container>
+
+    <div class="img-place">
+      <ion-select  interface="popover" (ionChange)="onActionSelect($event)" mode="ios"  class="edit">
+        <ion-select-option >Upload new photo</ion-select-option>
+        <ion-select-option >Delete</ion-select-option>
+      </ion-select>
+      <!-- <img  src="http://hussle.webapricot.am/storage/users/109/1620822319.jpeg"> -->
+      <swiper
+      #newSwiper
+      [grabCursor]="true"
+      [loop]="true"
+      [speed]=500
+      (swiper)="onSwiper($event)"
+      (slideChange)="onSlideChange()"
+      class="slider-modal">
+              <ng-template *ngFor=" let img of filtridImages " let-data swiperSlide>
+                  <img  [src]="img" class="img">
+              </ng-template>
+      </swiper>
+    </div>
+  </ng-container>

@@ -1,0 +1,67 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title routerLink="../login" class="ion-text-center">
+      {{texts.inb[currentLang]}}
+    </ion-title>
+
+    <ion-searchbar
+      #searchInput
+      (ionInput)="inputChange(searchInput)"
+      placeholder="Search"
+      class="mb-0"
+    ></ion-searchbar>
+    <ion-text *ngIf="message" class="ion-text-center block"
+      >{{message}}</ion-text
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <!-- <ion-header collapse="condense">
+    <ion-input type="serach" placeholder="Search"></ion-input>
+  </ion-header> -->
+
+  <ion-refresher
+    slot="fixed"
+    color="danger"
+    (ionRefresh)="getGlobalSearches($event)"
+  >
+    <ion-refresher-content
+      style="z-index: 999"
+      refreshingSpinner="circles"
+      iconColor="danger"
+      pullingText="Pull to refresh"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list class="ion-margin-horizontal">
+    <ion-item
+      *ngFor="let globalSearch  of globalSearches"
+      lines="none"
+      class="ion-no-padding"
+    >
+      <app-ad
+        (index)="deleteItem($event)"
+        (blockIndex)="blockUser($event)"
+        [from]="'inbox'"
+        [globalSearch]="globalSearch"
+      >
+      </app-ad>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll
+    [ngStyle]="{'display' : showInfiniteScroll ? 'block' : 'none'}"
+    #infiniteScroll
+    threshold="10px"
+    (ionInfinite)="loadData($event)"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="circles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

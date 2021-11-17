@@ -1,0 +1,19 @@
+<div class="modal-top ion-text-right">
+  <ion-text (click)="close()" class="ion-text-right">
+    Close
+  </ion-text>
+</div>
+
+
+<ion-content>
+   <ion-list *ngIf="options">
+     <ion-item *ngFor="let option of options" lines="none">
+       <ion-text (click)="selectOption(option.id)">
+         {{option.title}}
+       </ion-text>
+
+     </ion-item>
+   </ion-list>
+
+</ion-content>
+

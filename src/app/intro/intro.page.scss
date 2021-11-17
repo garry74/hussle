@@ -1,0 +1,38 @@
+
+
+
+ion-content{
+  --background: url("../../assets/icon/fon.png") no-repeat center/cover fixed !important;
+  --padding-top: 80px;
+
+  .logo{
+    width: 86px;
+    height: 84px;
+    margin: 0 auto;
+  }
+
+  ion-text{
+    color: var(--ion-color-gray);
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    font-family: "Acumin-Pro";
+    width: 90%;
+  }
+
+  .next-text {
+    padding: 5px 23px;
+    vertical-align: sub;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: "Acumin Pro";
+  }
+}
+
+.gradient-btn{
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --border-radius: 12px;
+}
+

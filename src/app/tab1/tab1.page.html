@@ -1,0 +1,26 @@
+<ion-header  translucent="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      Messages
+    </ion-title>
+    <ion-searchbar #searchInput (ionInput)="inputChange(searchInput)" placeholder="Search"></ion-searchbar>
+    <p *ngIf="mesaage" style="text-align: center; color:aliceblue;">{{mesaage}}</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" translucent="true" class="chat-content">
+ <ion-list  translucent="true" class="ion-no-padding">
+
+    <ion-item-sliding *ngFor=" let chat of allChats" >
+      <div (click)="chatClick($event,chat.user.id)">
+              <app-single-chat [chat]="chat"></app-single-chat>
+                  <ion-item-options  side="end">
+                    <ion-item-option (click)="delete($event, chat)" expandable>
+                      <ion-icon  name="close-outline"></ion-icon>
+                    </ion-item-option>
+                  </ion-item-options>
+      </div>
+    </ion-item-sliding>
+
+  </ion-list>
+</ion-content>

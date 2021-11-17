@@ -1,0 +1,57 @@
+<div class="personal-data">
+  <ion-row class="ion-no-padding">
+    <ion-col class="ion-text-center">
+      <h2>{{user?.name}}, {{user?.age}}</h2>
+      <div class="progress-bar">
+        <span class="text-agency block">{{ ratingCalculator(user.rating) }}%</span>
+        <div *ngIf="user?.rating && ratingCalculator(user.rating) as rating">
+          <span [style.width.%]="rating"></span>
+        </div>
+
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-no-padding">
+    <ion-col class="ion-no-padding">
+      <ion-text>
+        {{texts.countryCity[currentLang]}}
+      </ion-text>
+    </ion-col>
+    <ion-col class="ion-no-padding ion-text-right">
+      <ion-text>{{user?.loc_country.title}},{{user?.loc_city.title}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row  class="ion-no-padding">
+    <ion-col class="ion-no-padding">
+      <ion-text>{{texts.email[currentLang]}}</ion-text>
+    </ion-col>
+    <ion-col class="ion-no-padding ion-text-right">
+      <ion-text>
+        <a href="mailto:johnnyellis@gmail.com">{{user?.email}}</a>
+      </ion-text>
+      </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-no-padding">
+    <ion-col class="ion-no-padding">
+      <ion-text>{{texts.profession[currentLang]}}</ion-text>
+    </ion-col>
+    <ion-col class="ion-no-padding ion-text-right">
+      <ion-text>{{user?.profession}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row  class="ion-no-padding">
+    <ion-col class="ion-no-padding">
+      <ion-text>{{texts.tel[currentLang]}}</ion-text>
+    </ion-col>
+    <ion-col class="ion-no-padding ion-text-right">
+      <ion-text>
+        <a href="tel:+374 55 95 75 85">{{user?.phone}}</a>
+      </ion-text>
+
+    </ion-col>
+  </ion-row>
+</div>

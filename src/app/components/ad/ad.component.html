@@ -1,0 +1,95 @@
+<div class="inbox ion-no-padding">
+  <ion-row class="ion-no-padding">
+    <ion-col class="ion-no-padding">
+      <ion-avatar>
+        <img [src]="globalSearch.user?.image[0] ? globalSearch.user?.image[0] : 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+      </ion-avatar>
+      <div class="inline-block">
+        <h2>{{globalSearch.user?.name}}</h2>
+        <div class="progress-bar inline-block">
+
+          <div *ngIf="globalSearch.user?.rating && ratingCalculator(globalSearch.user?.rating) as rating">
+            <span [style.width.%]="rating"></span>
+          </div>
+          <span class="text-agency">{{ ratingCalculator(globalSearch.user?.rating) }}%</span>
+        </div>
+      </div>
+    </ion-col>
+    <ion-col  class="ion-text-right ion-no-padding">
+      <ion-button class="gradient-btn">${{globalSearch?.price | number}}</ion-button>
+      <ion-select *ngIf="from === 'inbox'" interface="popover" (ionChange)="onActionSelect($event)" mode="ios" class="ml-auto">
+        <ion-select-option
+
+        	*ngIf="!(globalSearch.user.phone_visibility === 0) || (globalSearch.user.phone === '')"
+          value="call">
+          {{texts.call[currentLang]}}
+        </ion-select-option>
+        <ion-select-option value="removeContact"> {{(globalSearch.user.to_contact?.length === 0) ? texts.addContact[currentLang] : texts.removeContact[currentLang]}}</ion-select-option>
+        <ion-select-option value="reportOption">{{texts.reportOptions[currentLang]}}</ion-select-option>
+        <ion-select-option value="delete">{{texts.Delete[currentLang]}}</ion-select-option>
+        <ion-select-option value="blockUser">{{texts.BlockUser[currentLang]}}</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="text ion-no-padding">
+    <ion-col class="ion-no-padding">
+      <ion-text class="text-agency">
+        {{globalSearch?.desc}}
+      </ion-text>
+    </ion-col>
+  </ion-row>
+
+        <!-- <ion-row *ngIf="globalSearch.images.length !== 0">
+                <ion-col class="ion-text-center">
+                  <ion-tumbnail>
+                    <img src="./../../assets/icon/Image.jpg">
+                  </ion-tumbnail>
+                </ion-col>
+        </ion-row> -->
+
+        <swiper *ngIf="globalSearch.images.length !== 0" [effect]="'cube'"
+        [grabCursor]="true"
+
+        [speed]=500
+        [cubeEffect]="{
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 80,
+          shadowScale: 0.94
+        }"
+        [coverflowEffect]="{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true
+        }"
+        [fadeEffect]="{
+          crossFade: true
+        }"
+
+        class="mySwiper">
+                <ng-template *ngFor=" let img of globalSearch.images " swiperSlide>
+                    <img [src]="img">
+                </ng-template>
+        </swiper>
+
+  <ion-row class="ad-bottom ion-no-padding">
+    <ion-col class="ion-no-padding text-agency"> {{globalSearch.created_at | date:'hh:mm dd/MM/yyyy'}}</ion-col>
+    <ion-col class="ion-no-padding ion-text-right text-agency">
+      <ion-icon *ngIf="from === 'inbox'" name="location-sharp" class="icon"></ion-icon>
+      <div *ngIf="from === 'fromMyProfile' || from === 'fromMyRequest'" class="position-relative inline-block">
+        <span class="purple-gradient">
+          <ion-icon (click)="openMap()" name="location-sharp" class="icon"></ion-icon>
+        </span>
+      </div>
+     <ng-container *ngIf="from !== 'fromMyRequest'">
+      {{globalSearch.user_searches ? (globalSearch.user_searches[0]?.pivot.distance | distanceValue ) : (globalSearch?.distance | distanceValue )}}
+    </ng-container>
+    <ng-container *ngIf="from === 'fromMyRequest'">
+      {{globalSearch?.custom_area_coords ? 'custom' : (globalSearch?.radius | distanceValue )}}
+    </ng-container>
+    </ion-col>
+  </ion-row>
+</div>

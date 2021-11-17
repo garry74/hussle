@@ -1,0 +1,152 @@
+<ion-content class="ion-padding-horizontal bg-content">
+  <ion-img class="logo" src="../../assets/icon/logo.png"></ion-img>
+
+  <div class="transparent-bg ion-padding-horizontal">
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button
+            *ngIf="step===1"
+            defaultHref="/login"
+            mode="ios"
+            text=""
+          ></ion-back-button>
+          <ion-button *ngIf="step===2" (click)="step=1"
+            ><ion-icon name="chevron-back-outline"></ion-icon
+          ></ion-button>
+          <ion-button *ngIf="step===3" (click)="step=2"
+            ><ion-icon name="chevron-back-outline"></ion-icon
+          ></ion-button>
+        </ion-buttons>
+        <ion-title>{{texts.forgotPass[currentLang]}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <div *ngIf="step===1">
+      <div class="position-relative">
+        <ion-label class="ion-text-left"
+          >{{texts.phone[currentLang]}}</ion-label
+        >
+        <ion-input
+          type="number"
+          (ionChange)="onPhoneChange($event)"
+          (keyup)="onTelPress()"
+          mode="md"
+          class="ion-padding-horizontal ion-text-left"
+          placeholder="+894894894"
+          [(ngModel)]="phone"
+        ></ion-input>
+      </div>
+      <span class="error ion-padding" *ngIf="isPhoneError">
+        {{texts.phoneNum[currentLang]}}
+      </span>
+      <div class="ion-text-center ion-padding-bottom forgot-password-bottom">
+        <ion-button
+          (click)="goToVerification()"
+          class="gradient-btn ion-margin-vertical"
+          >{{texts.sendBtn[currentLang]}}</ion-button
+        >
+      </div>
+    </div>
+
+    <div *ngIf="step===2">
+      <app-verification-code (chanedCode)="onEmitCode($event)" [data]="{phone}">
+      </app-verification-code>
+      <div class="ion-text-center ion-padding-bottom forgot-password-bottom">
+        <ion-button
+          (click)="goToConfirmPass()"
+          [disabled]="(VerComp.code.length === 0 && !isEmit)"
+          class="gradient-btn ion-margin-vertical"
+          >{{texts.continueBtn[currentLang]}}</ion-button
+        >
+      </div>
+    </div>
+
+    <div *ngIf="step===3">
+      <div class="ion-text-center ion-padding-bottom">
+        <form [formGroup]="forgotForm" class="ion-padding">
+          <div class="position-relative mb-30">
+            <ion-label class="ion-text-left"
+              >{{texts.newPassword[currentLang]}}</ion-label
+            >
+            <ion-input
+              [type]="!passShow ? 'password' : 'text'"
+              mode="md"
+              formControlName="password"
+              class="ion-padding-horizontal ion-text-left"
+              [autocomplete]="'off'"
+            ></ion-input>
+            <ion-icon
+              class="eye"
+              (click)="passShow = !passShow"
+              [name]="passShow ? 'eye' :  'eye-off'"
+            ></ion-icon>
+            <span
+              class="error ion-padding ion-text-left"
+              *ngIf=" errorControl.password.touched && errorControl.password.errors?.minlength"
+            >
+              {{texts.min8char[currentLang]}}
+            </span>
+            <span
+              class="error ion-padding ion-text-left"
+              *ngIf="errorControl.password.touched && errorControl.password.errors?.required"
+            >
+              {{texts.required[currentLang]}}
+            </span>
+            <span
+              class="error ion-padding ion-text-left"
+              *ngIf="errorControl.password.touched && errorControl.password.errors?.maxlength"
+            >
+              {{texts.max15char[currentLang]}}
+            </span>
+          </div>
+          <div class="position-relative mb-30">
+            <ion-label class="ion-text-left"
+              >{{texts.confirmPassword[currentLang]}}</ion-label
+            >
+            <ion-input
+              [type]="!repassShow ? 'password' : 'text'"
+              mode="md"
+              formControlName="password_confirmation"
+              class="ion-padding-horizontal ion-text-left"
+              [autocomplete]="'off'"
+              (keyup)="onRepassPress($event)"
+            ></ion-input>
+            <ion-icon
+              class="eye"
+              (click)="repassShow = !repassShow"
+              [name]="repassShow ? 'eye' :  'eye-off'"
+            ></ion-icon>
+            <span
+              class="error ion-padding ion-text-left"
+              *ngIf="errorControl.password_confirmation.touched && errorControl.password_confirmation.errors?.required"
+            >
+              {{texts.required[currentLang]}}
+            </span>
+            <span
+              class="error ion-padding ion-text-left"
+              *ngIf="errorControl.password_confirmation.touched && (forgotForm.value.password !== forgotForm.value.password_confirmation)"
+            >
+              {{texts.notMatchPassword[currentLang]}}
+            </span>
+          </div>
+          <div class="ion-text-center ion-padding-bottom confirm-password">
+            <ion-button
+              class="gradient-btn ion-margin-vertical"
+              [disabled]="!forgotForm.valid || !rePassRight"
+              (click)="onSubmit()"
+              >{{texts.continueBtn[currentLang]}}</ion-button
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <p class="ion-text-center text-white ion-padding-top">
+    {{texts.notHaveAccount[currentLang]}}
+    <a routerLink="../register" class="text-lightblue"
+      >{{texts.regNow[currentLang]}}</a
+    >
+  </p>
+</ion-content>

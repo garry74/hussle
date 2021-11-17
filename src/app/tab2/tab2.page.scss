@@ -1,0 +1,16 @@
+ion-item{
+    margin-bottom: 24px;
+    border-radius: 4px;
+    box-shadow: 0 6px 10px rgba(149, 8, 159 , 0.4);
+   border: 0.5px solid var(--ion-color-border-blue); 
+}
+
+ion-select::part(icon) {
+    content: url('./../../assets/icon/actions-icon.svg');
+    max-width: 24px;
+    opacity: 1;
+
+    &+label{
+        width: 0;
+    }
+}

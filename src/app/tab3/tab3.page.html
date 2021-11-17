@@ -1,0 +1,79 @@
+<ion-header translucent class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-icon (click)="openHelpModal()" name="information-circle-outline"></ion-icon>
+      <ion-icon  (click)="navigate()" name="ellipsis-horizontal-sharp"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="slider">
+    <swiper  [effect]="'coverflow'"
+    [grabCursor]="true"
+    [slidesPerView]="3"
+    [spaceBetween]="5"
+    [loop]="true"
+    [speed]=500
+    [cubeEffect]="{
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 80,
+      shadowScale: 0.94
+    }"
+    [coverflowEffect]="{
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true
+    }"
+    [fadeEffect]="{
+      crossFade: true
+    }"
+
+    class="mySwiper">
+            <ng-template *ngFor=" let img of images " swiperSlide>
+                <img (click)="onSliderPhotoClick(img)" [src]="img">
+            </ng-template>
+    </swiper>
+  </div>
+
+   <ng-container *ngIf="user">
+      <app-personal-data [from]="'fromMyProfile'" [personalInfo]="user" >
+      </app-personal-data>
+  </ng-container>
+
+  <div class="segment-place">
+    <ion-segment mode="md" value="myRequests" [(ngModel)]="activeSegment" (ionChange)="segmentChange($event)">
+    <ion-segment-button value="myRequests">
+      <ion-label>
+       <span *ngIf="user">{{user.searchesCount}}</span>
+        My Requests
+      </ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="myReviews">
+      <ion-label>
+        <span *ngIf="user">{{user.to_rating?.length}}</span>
+        My Reviews
+      </ion-label>
+    </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div *ngIf="activeSegment === 'myRequests'">
+    <ion-item *ngFor="let globalSearch  of user?.searches" lines="none" class="ion-no-padding profile-ad">
+     <app-ad [globalSearch] = "globalSearch" [from]="'fromMyProfile'">
+     </app-ad>
+    </ion-item>
+  </div>
+
+  <div *ngIf="activeSegment === 'myReviews'">
+    <ng-container *ngFor="let review  of user?.to_rating" lines="none" class="ion-no-padding">
+      <app-review [review]="review" [from]="'fromMyProfile'">
+      </app-review>
+    </ng-container>
+  </div>
+
+</ion-content>

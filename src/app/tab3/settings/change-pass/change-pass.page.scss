@@ -1,0 +1,27 @@
+ion-header{
+    ion-back-button{
+        color: #BFC4D3;
+        --icon-font-size: 20px;
+        --icon-margin-start: 0;
+        --icon-margin-end: 10px;
+    }
+    ion-title{
+        padding: 0;
+    }
+}
+
+ion-content{
+    --padding-top: 30px;
+    background: url('../../../../assets/icon/blur-colors.png') no-repeat -66px 66px;
+
+    ion-icon[class^='eye']{
+        position: absolute;
+        right: 16px;
+        top: 38px;
+        z-index: 100;
+      }
+
+    .confirm-password{
+        margin-top: 80px;
+    }
+}

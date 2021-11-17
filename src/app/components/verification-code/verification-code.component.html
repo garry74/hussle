@@ -1,0 +1,28 @@
+<ion-button *ngIf="fromRegister" class="close-btn" slot="end" fill="clear" (click)="close()">
+  <ion-icon name="close-outline"></ion-icon>
+</ion-button>
+
+<ion-text class="ion-text-center">
+  <h2 *ngIf="fromRegister">
+    {{texts.enterCod[currentLang]}}
+  </h2>
+</ion-text>
+
+<div class="positon-relative ion-padding-horizontal">
+  <ion-label>{{texts.verCod[currentLang]}}</ion-label>
+  <ion-input type="tel" [(ngModel)]="code"  (ionChange)="onNumberChange($event)" maxlength="4" mode="md" class="ion-padding-horizontal"></ion-input>
+  <ion-row>
+    <ion-col *ngIf="errCode" class="error-text"> {{texts.errMesage[currentLang]}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col disabled="!isExpiredCode" (click)="resendCode()"> {{texts.resendCod[currentLang]}}</ion-col>
+    <ion-col class="ion-text-end text-agency">{{ seconds }}</ion-col>
+  </ion-row>
+</div>
+
+<div *ngIf="fromRegister" class="ion-text-center ion-padding-bottom">
+  <ion-button class="gradient-btn ion-margin-vertical"
+  (click)="submitCode()"
+  [disabled]="(isExpiredCode || (code && code.length === 0) || !code || buttonDisabled)"
+   mode="ios">{{texts.submitButton[currentLang]}}</ion-button>
+</div>

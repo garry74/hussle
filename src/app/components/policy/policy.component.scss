@@ -1,0 +1,28 @@
+
+ion-header{
+  ion-title{
+    padding: 25px 0;
+  }
+  ion-button{
+    --padding-end: 0;
+    ion-icon{
+      color: var(--ion-color-white);
+    }
+  }  
+}
+
+ion-content{
+    background: url("../../../assets/icon/fon.png") no-repeat center;
+    background-attachment: fixed;
+    ion-text{
+      color: var(--ion-color-gray);
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 30px;
+      font-weight: 400;
+      font-family: "Acumin-Pro";
+      width: 90%;
+      display: block;
+    }
+  }
+  

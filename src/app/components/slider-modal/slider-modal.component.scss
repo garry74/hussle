@@ -1,0 +1,25 @@
+
+
+ion-select::part(icon) {
+  content: url('./../../../assets/icon/edit-icon.png');
+  width: 24px;
+  max-width: 24px;
+  opacity: 1;
+}
+.img-place{
+  position: relative;
+  width: 60%;
+  margin: 30px auto;
+  border-radius: 8px;
+  .edit{
+    position: absolute;
+    right: -21px;
+    top: -15px;
+  }
+}
+.img{
+  max-height: 230px;
+}
+.slider-modal{
+  width: auto;
+}

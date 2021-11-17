@@ -1,0 +1,63 @@
+ion-content{
+  background: url('../../assets/icon/blur-colors.png') no-repeat -66px 66px;
+
+  .logo{
+    width: 86px;
+    height: 84px;
+    // margin: 77px auto 40px;
+    margin: 30px auto 20px;
+  }
+
+  ion-header{
+    padding-top: 30px;
+  }
+  ion-toolbar{
+    margin-bottom: 20px;
+    --background: transparent;
+  }
+
+  ion-title{
+    padding: 25px 5px;
+    font-size: 24px;
+    font-family: "Acumin Pro";
+    font-weight: 700;
+  }
+  ion-back-button{
+    color: #BFC4D3;
+    --icon-font-size: 20px;
+    --icon-margin-start: 0;
+    --icon-margin-end: 10px;
+    // ion-icon{
+    //   span[part="text"].button-text{
+    //     display: none;
+    //   }
+    // }
+
+  }
+
+  ion-icon[class^='eye']{
+    position: absolute;
+    right: 16px;
+    top: 38px;
+    z-index: 100;
+  }
+
+
+.forgot-password-bottom{
+  margin-top: 170px;
+}
+
+.confirm-password{
+  margin-top: 80px;
+}
+}
+
+
+// .eye{
+//   position: absolute;
+//   right: 16px;
+//   top: 40px;
+//   z-index: 100;
+// }
+
+

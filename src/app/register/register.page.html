@@ -1,0 +1,478 @@
+<ion-content class="ion-padding-horizontal">
+  <ion-img class="logo" src="../../assets/icon/logo.png"></ion-img>
+  <div class="transparent-bg ion-padding">
+    <ion-text class="ion-text-center">
+      <h1>Register now</h1>
+    </ion-text>
+    <p class="ion-text-center text-dark">Lorem Ipsum is simply dummy text</p>
+    <div class="segment-place">
+      <ion-segment
+        mode="ios"
+        value="person"
+        [(ngModel)]="activeSegment"
+        (ionChange)="segmentChange($event)"
+      >
+        <ion-segment-button value="person">
+          <ion-label>{{texts.person[currentLang]}}</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="company">
+          <ion-label>{{texts.company[currentLang]}}</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <form [formGroup]="regForm" (ngSubmit)="onSubmit()" class="ion-padding">
+      <div *ngIf="step === 1" class="step1">
+        <div *ngIf="activeSegment === 'person'" class="mb-30" s>
+          <ion-label class="ion-no-padding ion-left-text"
+            >{{texts.name[currentLang]}} *</ion-label
+          >
+          <ion-input
+            formControlName="name"
+            type="text"
+            (keypress)="onKeyPress($event)"
+            class="ion-padding-horizontal"
+          ></ion-input>
+          <span
+            class="error ion-padding"
+            *ngIf=" errorControl.name.touched && errorControl.name.errors?.minlength"
+          >
+            {{texts.min3char[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.name.touched && errorControl.name.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.name.touched && errorControl.name.errors?.maxlength"
+          >
+            {{texts.max15char[currentLang]}}
+          </span>
+        </div>
+        <div *ngIf="activeSegment === 'person'" class="mb-30">
+          <ion-label class="ion-no-padding ion-left-text"
+            >{{texts.surname[currentLang]}} *</ion-label
+          >
+          <ion-input
+            formControlName="surname"
+            type="text"
+            (keypress)="onKeyPress($event)"
+            class="ion-padding-horizontal"
+          ></ion-input>
+          <span
+            class="error ion-padding"
+            *ngIf=" errorControl.surname.touched && errorControl.surname.errors?.minlength"
+          >
+            {{texts.min3char[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.surname.touched && errorControl.surname.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.surname.touched && errorControl.surname.errors?.maxlength"
+          >
+            {{texts.max15char[currentLang]}}
+          </span>
+        </div>
+        <div *ngIf="activeSegment === 'person'" class="mb-30">
+          <ion-label class="ion-no-padding ion-left-text"
+            >{{texts.profession[currentLang]}} *</ion-label
+          >
+          <ion-input
+            formControlName="profession"
+            type="text"
+            (keypress)="onKeyPress($event)"
+            class="ion-padding-horizontal"
+          ></ion-input>
+          <span
+            class="error ion-padding"
+            *ngIf=" errorControl.profession.touched && errorControl.profession.errors?.minlength"
+          >
+            {{texts.min3char[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.profession.touched && errorControl.profession.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.profession.touched && errorControl.profession.errors?.maxlength"
+          >
+            {{texts.max15char[currentLang]}}
+          </span>
+        </div>
+        <div *ngIf="activeSegment === 'person'" class="gender mb-30">
+          <ion-label>{{texts.gender[currentLang]}}</ion-label>
+          <span
+            (click)="gender = false;this.regForm.get('gender').setValue('male')"
+            [ngClass]="{'white':!gender}"
+            ><img
+              [src]="!gender ? 'assets/icon/checked.png' : 'assets/icon/check.png'"
+            />
+            <ion-text class="gender-text">
+              {{texts.male[currentLang]}}
+            </ion-text>
+          </span>
+          <span
+            (click)="gender = true;this.regForm.get('gender').setValue('female')"
+            [ngClass]="{'white':gender}"
+            ><img
+              [src]="gender ? 'assets/icon/checked.png' : 'assets/icon/check.png'"
+            />
+            <ion-text class="gender-text">
+              {{texts.female[currentLang]}}
+            </ion-text>
+          </span>
+        </div>
+        <!-- company -->
+        <div *ngIf="activeSegment === 'company'" class="mb-30">
+          <ion-label class="ion-no-padding ion-left-text"
+            >{{texts.compName[currentLang]}} *</ion-label
+          >
+          <ion-input
+            formControlName="company_name"
+            type="text"
+            (keypress)="onKeyPress($event)"
+            class="ion-padding-horizontal"
+          ></ion-input>
+          <span
+            class="error ion-padding"
+            *ngIf=" errorControl.company_name.touched && errorControl.company_name.errors?.minlength"
+          >
+            {{texts.min3char[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.company_name.touched && errorControl.company_name.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.company_name.touched && errorControl.company_name.errors?.maxlength"
+          >
+            {{texts.max30char[currentLang]}}
+          </span>
+        </div>
+        <div *ngIf="activeSegment === 'company'" class="mb-30">
+          <ion-label class="ion-no-padding ion-left-text"
+            >{{texts.userName[currentLang]}} *</ion-label
+          >
+          <ion-input
+            formControlName="user_name"
+            type="text"
+            (keypress)="onKeyPress($event)"
+            class="ion-padding-horizontal"
+          ></ion-input>
+          <span
+            class="error ion-padding"
+            *ngIf=" errorControl.user_name.touched && errorControl.user_name.errors?.minlength"
+          >
+            {{texts.min3char[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.user_name.touched && errorControl.user_name.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.user_name.touched && errorControl.user_name.errors?.maxlength"
+          >
+            {{texts.max15char[currentLang]}}
+          </span>
+        </div>
+        <div *ngIf="activeSegment === 'company'" class="mb-30">
+          <ion-label class="ion-no-padding ion-left-text"
+            >{{texts.description[currentLang]}} *</ion-label
+          >
+          <ion-textarea auto-grow="true" formControlName="description">
+          </ion-textarea>
+          <span
+            class="error ion-padding ion-text-left"
+            *ngIf="errorControl.description.touched && errorControl.description.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+        </div>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-text class="next-text"
+              >{{texts.nextButton[currentLang]}}</ion-text
+            >
+            <ion-button
+              class="signup gradient-btn sm-btn"
+              (click)="onGoToStepToo()"
+            >
+              <ion-icon name="chevron-forward"></ion-icon>
+            </ion-button>
+            <!-- <ion-button  color="secondary" class="signup"  (click)="onGoToStepToo()" >
+            {{texts.nextButton[currentLang]}}
+            </ion-button> -->
+          </ion-col>
+        </ion-row>
+      </div>
+      <!-- step == 2 -->
+      <div *ngIf="step === 2" class="step2">
+        <!-- place for Country
+        place for Sity -->
+        <div class="mb-30">
+          <ion-label class="ion-no-padding ion-left-text">Country *</ion-label>
+          <div class="select-dropdown">
+            <span (click)="openCountry($event)" class="select-name" #country>
+              Country
+            </span>
+            <ion-icon
+              (click)="openCountry($event)"
+              name="chevron-down-outline"
+            ></ion-icon>
+          </div>
+
+          <div *ngIf="isOpenCountry" class="dropdown">
+            <div class="position-sticky">
+              <ion-icon name="search-outline"></ion-icon>
+              <ion-input
+                type="search"
+                placeholder="Search"
+                #searchInput
+                class="ion-padding-horizontal"
+              ></ion-input>
+            </div>
+            <ion-item
+              lines="none"
+              class="ion-no-padding"
+              *ngFor="let country of allCountries | search: searchInput.value?.toString()"
+            >
+              <ion-label
+                (click)="onCountryChoose(country.id,country.title)"
+                class="ion-no-padding"
+                >{{country.title}}</ion-label
+              >
+            </ion-item>
+          </div>
+        </div>
+
+        <div class="mb-30">
+          <ion-label class="ion-no-padding ion-left-texts">City *</ion-label>
+          <div class="select-dropdown">
+            <span (click)="openSity($event)" class="select-name" #sity>
+              City
+            </span>
+            <ion-icon
+              (click)="openSity($event)"
+              name="chevron-down-outline"
+            ></ion-icon>
+          </div>
+
+          <div *ngIf="isOpenSity" class="dropdown">
+            <div class="position-sticky">
+              <ion-icon name="search-outline"></ion-icon>
+              <ion-input
+                type="search"
+                placeholder="Search"
+                #sitysearch
+              ></ion-input>
+            </div>
+            <ion-item
+              lines="none"
+              class="ion-no-padding"
+              *ngFor="let sity of allCities | search: sitysearch.value?.toString()"
+            >
+              <ion-label
+                (click)="onSityChoose(sity.id,sity.title)"
+                class="ion-no-padding"
+                >{{sity.title}}</ion-label
+              >
+            </ion-item>
+          </div>
+        </div>
+        <div *ngIf="activeSegment === 'person'" class="position-relative mb-30">
+          <ion-label class="ion-no-padding ion-left-text">
+            {{texts.dateBr[currentLang]}} *</ion-label
+          >
+          <div class="select-dropdown datetime-dropdown">
+            <ion-datetime
+              displayFormat="DD/MM/YYYY"
+              formControlName="date_of_birth"
+              mode="md"
+              [max]="minDate"
+            ></ion-datetime>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </div>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.date_of_birth.touched && errorControl.date_of_birth.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+        </div>
+        <div *ngIf="activeSegment === 'company'" class="mb-30">
+          <ion-label class="ion-no-padding ion-left-text"
+            >{{texts.address[currentLang]}} *</ion-label
+          >
+          <ion-input
+            formControlName="address"
+            type="text"
+            (keypress)="onKeyPress($event)"
+            class="ion-padding-horizontal"
+          ></ion-input>
+          <span
+            class="error ion-padding"
+            *ngIf=" errorControl.address.touched && errorControl.address.errors?.minlength"
+          >
+            {{texts.min3char[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.address.touched && errorControl.address.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.address.touched && errorControl.address.errors?.maxlength"
+          >
+            {{texts.max50char[currentLang]}}
+          </span>
+        </div>
+        <div class="mb-30">
+          <ion-label class="ion-no-padding ion-left-text"
+            >{{texts.tel[currentLang]}} *</ion-label
+          >
+          <ion-input
+            formControlName="phone"
+            type="text"
+            (keypress)="onKeyPressTel($event)"
+            class="ion-padding-horizontal"
+          >
+          </ion-input>
+          <span
+            class="error ion-padding"
+            *ngIf=" errorControl.phone.touched && errorControl.phone.errors?.minlength"
+          >
+            {{texts.min7char[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.phone.touched && errorControl.phone.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.phone.touched && errorControl.phone.errors?.maxlength"
+          >
+            {{texts.max15char[currentLang]}}
+          </span>
+        </div>
+        <div class="mb-30">
+          <ion-label class="ion-no-padding ion-left-text">
+            {{texts.email[currentLang]}} *</ion-label
+          >
+          <ion-input
+            type="email"
+            formControlName="email"
+            class="ion-padding-horizontal"
+          >
+          </ion-input>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.email.touched && errorControl.email.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.email.touched && errorControl.email.errors?.pattern"
+          >
+            {{texts.corectEmail[currentLang]}}
+          </span>
+        </div>
+        <div class="position-relative mb-30">
+          <ion-label class="ion-no-padding ion-left-text">
+            {{texts.choosePass[currentLang]}} *</ion-label
+          >
+          <ion-input
+            [type]="!passShow ? 'password' : 'text'"
+            formControlName="password"
+            required
+            [autocomplete]="'off'"
+            class="ion-padding-horizontal"
+          >
+          </ion-input>
+          <ion-icon
+            class="eye"
+            (click)="passShow = !passShow"
+            [name]="passShow ? 'eye' :  'eye-off'"
+          ></ion-icon>
+          <span
+            class="error ion-padding"
+            *ngIf=" errorControl.password.touched && errorControl.password.errors?.minlength"
+          >
+            {{texts.min7char[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.password.touched && errorControl.password.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.password.touched && errorControl.password.errors?.maxlength"
+          >
+            {{texts.max15char[currentLang]}}
+          </span>
+        </div>
+        <div class="position-relative mb-30">
+          <ion-label class="ion-no-padding ion-left-text">
+            {{texts.reEnterPass[currentLang]}} *</ion-label
+          >
+          <ion-input
+            [type]="!repassShow ? 'password' : 'text'"
+            formControlName="password_confirmation"
+            required
+            [autocomplete]="'off'"
+            class="ion-padding-horizontal"
+          >
+          </ion-input>
+          <ion-icon
+            class="eye"
+            (click)="repassShow = !repassShow"
+            [name]="repassShow ? 'eye' :  'eye-off'"
+          ></ion-icon>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.password_confirmation.touched && errorControl.password_confirmation.errors?.required"
+          >
+            {{texts.required[currentLang]}}
+          </span>
+          <span
+            class="error ion-padding"
+            *ngIf="errorControl.password_confirmation.touched && (regForm.value.password !== regForm.value.password_confirmation)"
+          >
+            {{texts.notMatchPassword[currentLang]}}
+          </span>
+        </div>
+        <div class="ion-text-center">
+          <ion-button class="signup gradient-btn" (click)="onGoToVerifiCode()">
+            {{texts.signUpButton[currentLang]}}
+          </ion-button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <p class="ion-text-center text-white bottom-text">
+    Already have an account ?
+    <a routerLink="../login" class="text-lightblue">Log in</a>
+  </p>
+</ion-content>

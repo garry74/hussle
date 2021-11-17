@@ -1,0 +1,64 @@
+<ion-header  class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" mode="ios" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Change Password</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="changePass" (ngSubmit)="onSubmit()" class="ion-padding">
+      <div class="transparent-bg ion-padding">
+        <div class="position-relative mb-30">
+          <ion-label class="ion-text-left">Current password</ion-label>
+          <ion-input [type]="!passShow1 ? 'password' : 'text'" mode="md" formControlName="curPass" class="ion-padding-horizontal ion-text-left" [autocomplete]="'off'"></ion-input>
+          <ion-icon class="eye" (click)="passShow1 = !passShow1" [name]="passShow1 ? 'eye' :  'eye-off'"></ion-icon>
+          <span class="error ion-padding ion-text-left" *ngIf=" errorControl.curPass.touched && errorControl.curPass.errors?.minlength">
+            {{texts.min8char[currentLang]}}
+          </span>
+          <span class="error ion-padding ion-text-left" *ngIf="errorControl.curPass.touched && errorControl.curPass.errors?.required">
+            {{texts.required[currentLang]}}
+          </span>
+          <span class="error ion-padding ion-text-left" *ngIf="errorControl.curPass.touched && errorControl.curPass.errors?.maxlength">
+            {{texts.max15char[currentLang]}}
+          </span>
+        </div>
+
+        <div class="position-relative mb-30">
+          <ion-label class="ion-text-left">New password</ion-label>
+          <ion-input [type]="!passShow2 ? 'password' : 'text'" mode="md" formControlName="password" class="ion-padding-horizontal ion-text-left" [autocomplete]="'off'"></ion-input>
+          <ion-icon class="eye" (click)="passShow2 = !passShow2" [name]="passShow2 ? 'eye' :  'eye-off'"></ion-icon>
+          <span class="error ion-padding ion-text-left" *ngIf=" errorControl.password.touched && errorControl.password.errors?.minlength">
+            {{texts.min8char[currentLang]}}
+          </span>
+          <span class="error ion-padding ion-text-left" *ngIf="errorControl.password.touched && errorControl.password.errors?.required">
+            {{texts.required[currentLang]}}
+          </span>
+          <span class="error ion-padding ion-text-left" *ngIf="errorControl.password.touched && errorControl.password.errors?.maxlength">
+            {{texts.max15char[currentLang]}}
+          </span>
+        </div>
+
+        <div class="position-relative mb-30">
+          <ion-label class="ion-text-left">Confirm new password</ion-label>
+          <ion-input [type]="!passShow ? 'password' : 'text'" mode="md" formControlName="password_confirmation" class="ion-padding-horizontal ion-text-left" [autocomplete]="'off'"></ion-input>
+          <ion-icon class="eye" (click)="passShow = !passShow" [name]="passShow ? 'eye' :  'eye-off'"></ion-icon>
+          <span class="error ion-padding ion-text-left" *ngIf=" errorControl.password_confirmation.touched && errorControl.password_confirmation.errors?.minlength">
+            {{texts.min8char[currentLang]}}
+          </span>
+          <span class="error ion-padding ion-text-left" *ngIf="errorControl.password_confirmation.touched && errorControl.password_confirmation.errors?.required">
+            {{texts.required[currentLang]}}
+          </span>
+          <span class="error ion-padding ion-text-left" *ngIf="errorControl.password_confirmation.touched && errorControl.password_confirmation.errors?.maxlength">
+            {{texts.max15char[currentLang]}}
+          </span>
+        </div>
+
+        <div class="ion-text-center ion-padding-bottom confirm-password">
+          <ion-button type="submit" class="gradient-btn ion-margin-vertical">Update password</ion-button>
+        </div>
+      </div>
+  </form>
+
+</ion-content>

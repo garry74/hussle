@@ -1,0 +1,16 @@
+ion-content{
+  background: url('../../assets/icon/blur-colors.png') no-repeat -66px 66px;
+  .logo{
+    width: 86px;
+    height: 84px;
+    // margin: 77px auto 40px;
+    margin: 30px auto 20px;
+  }
+
+  ion-icon[class^='eye']{
+      position: absolute;
+      right: 16px;
+      top: 40px;
+      z-index: 100;
+  }
+}

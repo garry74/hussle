@@ -1,0 +1,193 @@
+ion-content{
+  min-height:524px;
+  background: url('../../assets/icon/blur-colors.png') no-repeat -66px 66px;
+  .logo{
+    width: 44px;
+    height: 43px;
+    margin: 30px auto 20px;
+  }
+  ion-icon[class^='eye']{
+    position: absolute;
+    right: 16px;
+    top: 38px;
+    z-index: 100;
+  }
+
+  .select-dropdown{
+    border: 0.5px solid var(--ion-color-border);
+    padding: 12px 10px 9px;
+    border-radius: 4px;
+    // margin-bottom: 5px;
+    position: relative;
+
+    &+.dropdown{
+      background: var(--ion-color-dark-bg);
+      max-height: 350px;
+      overflow-y: auto;
+      padding: 0 16px;
+      border-radius: 10px;
+
+      .position-sticky{
+        z-index: 100;
+        height: 75px;
+        top: 0;
+        padding-top: 5px;
+        background: var(--ion-color-dark-bg);
+
+        ion-item{
+          background: var(--ion-color-dark-bg);
+        }
+      }
+
+      ion-input{
+        --padding-start: 45px;
+        border: 0.5px solid rgba(216, 216, 216 ,0.31);
+        margin: 17px 0 0;
+        max-width: 260px;
+      }
+
+      ion-icon{
+        position: absolute;
+        left: 17px;
+        top: 36px;
+      }
+     
+      ion-item{
+        --background: transparent;
+        margin-bottom: 0;
+        --padding-start: 14px;
+      }
+    }
+    ion-icon{
+      font-size: 20px;
+    }
+  }
+  .datetime-dropdown{
+    padding: 0 10px 0 0;
+    margin-bottom: 5px;
+    ion-datetime{
+      width: 100%;
+    }
+  }
+
+  .select-dropdown{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     .select-name{
+      font-family: Acumin-Pro;
+      font-weight: 400;
+      font-size: 14px;
+     }
+  }
+
+  .next-text {
+    padding: 5px 23px;
+    vertical-align: sub;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: "Acumin Pro";
+  }
+
+  .gradient-btn{
+    --padding-start: 66px;
+    --padding-end: 66px;
+  }
+
+  .gradient-btn.sm-btn{
+    --padding-start: 10px;
+    --padding-end: 10px;
+    --border-radius: 12px;
+  }
+
+  .gender{
+    color: #676767;
+    font-size: 14px;
+      ion-label{
+        margin-bottom: 15px;
+      }
+      span{
+        align-items: center;
+        display: inline-flex;
+        padding-right: 10px;
+        margin-right: 24px;
+        font-size: 12px;
+        img{
+          margin-right: 13px;
+        }
+    }
+  
+  }
+}
+
+
+
+// ion-title {
+//   padding: 0;
+//   font-size: 24px;
+//   font-weight: 700;
+//   font-family: Acumin Pro;
+//   margin-bottom: 2px;
+
+//   &+ion-text{
+//     font-size: 14px;
+//     font-weight: 400;
+//     font-family: Acumin Pro;
+//   }
+// }
+
+ion-item{
+  ion-label{
+    display: block;
+    margin-bottom: 8px;
+  }
+  margin-bottom: 25px;
+}
+
+
+
+
+.white{
+  color: var(--ion-color-white);
+}
+
+// .gender-text{
+//   color: #676767;
+// }
+
+.arrow-down{
+  position: absolute;
+  top: 42px;
+  right: 15px;
+}
+// .eye{
+//   position: absolute;
+//   font-size: 22px;
+//   right: 15px;
+//   top: 33px;
+//   z-index: 999999;
+//   color: rgb(189, 155, 155);
+//   }
+
+  .segment-place{
+    margin: 15px 39px 22px;
+  }
+
+  ion-segment{
+    --background: rgba(185, 185, 185,0.2);
+    ion-segment-button {
+        font-size: 14px;
+        font-weight: 400;
+        --indicator-color: rgba(70, 90, 224, 0.67);
+        --indicator-box-shadow: none;
+        font-family: Acumin-Pro;
+        margin: 0 -3px;
+        --padding-top: 3px;
+        ion-label{
+          margin-bottom: 0;
+          color: var(--ion-color-white);
+        }
+    }
+}
+
+

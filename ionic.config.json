@@ -1,0 +1,7 @@
+{
+  "name": "True-Hussle",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

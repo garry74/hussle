@@ -1,0 +1,31 @@
+<ion-item class="ion-no-padding position-relative chat-item">
+  <span [ngClass]="{'new-message': chat.seen === 0}" ></span>
+  <ion-thumbnail class="position-relative">
+    <span class="badge"></span>
+    <img (click)="navigateTo($event, chat.user.id)" [src]="chat.user?.image[0] ? chat.user?.image[0] : 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+  </ion-thumbnail>
+  <ion-label>
+    <ion-row class="ion-no-padding">
+      <ion-col class="ion-no-padding">
+        <h2 (click)="navigateTo($event, chat.user.id)">{{chat.user.name}}</h2>
+      </ion-col>
+      <ion-col class="ion-text-right ion-no-padding">
+        <span *ngIf="!showFullDate">{{deltaDateInMinute}} {{dateText}}</span>
+        <span *ngIf="showFullDate">{{chat.created_at | date}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding">
+      <ion-col class="ion-no-padding">
+        <p *ngIf="chat.type === 'text'">{{chat.body}}</p>
+        <ion-icon  *ngIf="chat.type === 'location'" name="location-sharp"></ion-icon>
+        <ion-icon  *ngIf="chat.type === 'video'"  name="videocam"></ion-icon>
+        <ion-icon  *ngIf="chat.type === 'audio'" src="../../../assets/icon/mic-icon.svg"></ion-icon>
+        <ion-icon  *ngIf="chat.type === 'img'" src="../../../assets/icon/image-icon.svg" ></ion-icon>
+
+      </ion-col>
+    </ion-row>
+  </ion-label>
+</ion-item>
+
+
+
